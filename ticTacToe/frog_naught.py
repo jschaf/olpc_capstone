@@ -8,7 +8,16 @@ class Cell(object):
     NAUGHT = 0                  # an 'O'
     EMPTY = -1
 
+def cell_str(cell_enum):
+    '''Return a string representation of a Cell enum.'''
+    if cell_enum == Cell.NAUGHT:
+        return 'O'
+    elif cell_enum == Cell.CROSS:
+        return 'X'
+    elif cell_enum == Cell.EMPTY:
+        return ' '
 
+    
 class InputError(Exception):
     '''Exception raised for errors in the input.
 
@@ -32,21 +41,13 @@ class TicTacToe(object):
         self.board = [[Cell.EMPTY for _ in range(self.size)] for _ in range(3)]
 
     def __str__(self):
-        def cell_to_string(mark):
-            '''Return a string representation of a Cell enum.'''
-            if mark == Cell.NAUGHT:
-                return 'O'
-            elif mark == Cell.CROSS:
-                return 'X'
-            elif mark == Cell.EMPTY:
-                return ' '
-
-        build_row = lambda row: [cell_to_string(elem) for elem in row]
+        build_row = lambda row: [cell_str(elem) for elem in row]
         row_strings = ['|'.join(build_row(row)) for row in self.board]
         return '\n-+-+-\n'.join(row_strings)
 
     def is_won_by(self, cell):
-        '''Return true if the given cell has won, else return false.
+        '''Return true if the given cell enum has won, else return
+        false.
 
         Keyword arguments:
         cell -- which Cell enum to check for a win
