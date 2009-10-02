@@ -22,8 +22,8 @@ class InputError(Exception):
     '''Exception raised for errors in the input.
 
     Attributes:
-        expression -- input expression in which the error occurred
-        message -- explanation of the error
+    expression -- input expression in which the error occurred
+    message -- explanation of the error
     '''
 
     def __init__(self, expression, message):
@@ -45,6 +45,23 @@ class TicTacToe(object):
         row_strings = ['|'.join(build_row(row)) for row in self.board]
         return '\n-+-+-\n'.join(row_strings)
 
+    @property
+    def rows(self):
+        '''Return the rows of the tic-tac-toe board.'''
+        return self.board
+        
+    @property
+    def cols(self):
+        '''Return the columns of tic-tac-toe board.'''
+        return zip(*self.rows)
+
+    @property
+    def diagonals(self):
+        '''Return the 2 diagonals of the tic-tac-toe-board'''
+        return [[board[i][i] for i in range(self.size)]
+                for board in (self.rows,
+                              [list(reversed(i)) for i in self.rows])]
+    
     def is_won_by(self, cell):
         '''Return true if the given cell enum has won, else return
         false.
@@ -54,18 +71,9 @@ class TicTacToe(object):
         '''
         all_match = lambda a, b, c: cell == a == b == c
 
-        check_rows = any([all_match(*row) for row in self.board])
-        check_cols = any([all_match(*col) for col in zip(*self.board)])
-
-        check_right_diag = all_match(*[self.board[i][i]
-                                       for i in range(self.size)])
-
-        check_left_diag = all_match(*[self.board[self.size - 1 - i][i]
-                                      for i in range(self.size)])
-
-        return (check_rows or check_cols or check_right_diag
-                or check_left_diag)
-
+        return any([all_match(*triple) for triple in
+                    (self.rows + self.cols + self.diagonals)])
+    
     def mark_cell(self, cell, row, col):
         '''Insert cell at (row,col) if it is empty.
 
