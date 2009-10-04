@@ -8,20 +8,19 @@ class Cell(object):
     NAUGHT = 0                  # an 'O'
     EMPTY = -1
 
-def cell_str(cell_enum):
-    '''Return a string representation of a Cell enum.'''
-    if cell_enum == Cell.NAUGHT:
-        return 'O'
-    elif cell_enum == Cell.CROSS:
-        return 'X'
-    elif cell_enum == Cell.EMPTY:
-        return ' '
-
+    @classmethod
+    def cell_str(cls, cell_enum):
+        '''Return a string representation of a Cell enum.'''
+        if cell_enum == Cell.NAUGHT:
+            return 'O'
+        elif cell_enum == Cell.CROSS:
+            return 'X'
+        elif cell_enum == Cell.EMPTY:
+            return ' '
     
 class InputError(Exception):
     '''Exception raised for errors in the input.
-
-    Attributes:
+    
     expression -- input expression in which the error occurred
     message -- explanation of the error
     '''
@@ -33,54 +32,60 @@ class InputError(Exception):
 class TicTacToe(object):
     '''A matrix of Cells to represent a tic-tac-toe board.
 
-    Attributes:
-    size -- the width and height of the tic-tac-toe board
+    :param size: the width and height of the tic-tac-toe board
     '''
     def __init__(self, size=3):
         self.size = size
-        self.board = [[Cell.EMPTY for _ in range(self.size)] for _ in range(3)]
+        self.board = [[Cell.EMPTY for _ in range(self.size)]
+                      for _ in range(self.size)]
 
     def __str__(self):
-        build_row = lambda row: [cell_str(elem) for elem in row]
+        build_row = lambda row: [Cell.cell_str(elem) for elem in row]
         row_strings = ['|'.join(build_row(row)) for row in self.board]
         return '\n-+-+-\n'.join(row_strings)
 
     @property
     def rows(self):
-        '''Return the rows of the tic-tac-toe board.'''
+        '''Return a list of all rows in the tic-tac-toe board.'''
         return self.board
         
     @property
     def cols(self):
-        '''Return the columns of tic-tac-toe board.'''
+        '''Return a list of all columns in the tic-tac-toe board.'''
         return zip(*self.rows)
 
     @property
     def diagonals(self):
-        '''Return the 2 diagonals of the tic-tac-toe-board'''
+        '''Return a list containing the 2 diagonals of the
+        tic-tac-toe board.
+        '''
         return [[board[i][i] for i in range(self.size)]
                 for board in (self.rows,
                               [list(reversed(i)) for i in self.rows])]
+
+    def possible_moves(self):
+        '''Return a list of (x,y) tuples that are empty.
+        '''
+        return [(i,j) for i in range(self.size)
+                for j in range(self.size)
+                if self.board[i][j] == Cell.EMPTY]
     
     def is_won_by(self, cell):
-        '''Return true if the given cell enum has won, else return
-        false.
+        '''Return if the given cell enum has won.
 
-        Keyword arguments:
-        cell -- which Cell enum to check for a win
+        :param cell: -- which Cell enum to check for a win
         '''
-        all_match = lambda a, b, c: cell == a == b == c
+        all_match = lambda item: cell == item
 
-        return any([all_match(*triple) for triple in
+        return any([all(all_match, cells) for cells in
                     (self.rows + self.cols + self.diagonals)])
     
     def mark_cell(self, cell, row, col):
         '''Insert cell at (row,col) if it is empty.
 
-        Keyword arguments:
-        cell -- the Cell enum to insert
-        row -- which row of the board to insert the cell
-        col -- which col of the board to insert the cell
+        :param cell: the Cell enum to insert
+        :param row: which row of the board to insert the cell
+        :param col: which col of the board to insert the cell
         '''
         if self.board[row][col] == Cell.EMPTY:
             self.board[row][col] = cell
