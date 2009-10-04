@@ -1,7 +1,5 @@
 ''' TicTacToeAI - a collection of various AIs for tic-tac-toe.
 
-
-
 * Win: If you have two in a row, play the third to get three in a row.
 
 * Block: If the opponent has two in a row, play the third to block
@@ -11,15 +9,19 @@
 
 * Block Opponent's Fork:
 
-    + Option 1: Create two in a row to force the opponent into
-    defending, as long as it doesn't result in them creating a fork or
-    winning. For example, if "X" has a corner, "O" has the center, and
-    "X" has the opposite corner as well, "O" must not play a corner in
-    order to win. (Playing a corner in this scenario creates a fork
-    for "X" to win.)
+    Option 1
+    
+       Create two in a row to force the opponent into defending, as
+       long as it doesn't result in them creating a fork or
+       winning. For example, if "X" has a corner, "O" has the center,
+       and "X" has the opposite corner as well, "O" must not play a
+       corner in order to win. (Playing a corner in this scenario
+       creates a fork for "X" to win.)
 
-    + Option 2: If there is a configuration where the opponent can
-    fork, block that fork.
+    Option 2
+
+        If there is a configuration where the opponent can fork, block
+        that fork.
 
 * Center: Play the center.
 
@@ -31,22 +33,36 @@
 
 '''
 import abc
-from frog_naught import TicTacToe
+from frog_naught import TicTacToe, Cell
+import itertools as itools
 
 class TicTacToeAI(object):
     __metaclass__ = abc.ABCMeta
 
-    @abc.abstractmethod
-    def next_move(self, board):
-        pass
+    def find_win_spot(self, board, cell):
+        for a,b,c in (board.rows + board.cols + board.diagonals):
+            if cell == a == b or cell == b == c or cell == a == c:
+                pass
+            
+    def find_block_spot(self, board, cell):
+        opposite = Cell.CROSS if cell == Cell.NAUGHT else Cell.NAUGHT
+        return find_win_spot(self, board, opposite)
 
+
+
+        
+    @abc.abstractmethod
+    def make_move(self, board):
+        pass
+    
+    
 class PerfectAI(TicTacToeAI):
     '''
     '''
     def __init__(self, cell):
         self.cell = cell
         
-    def next_move(self, board):
+    def make_move(self, board):
         
         
         
