@@ -39,12 +39,20 @@ import itertools as itools
 class TicTacToeAI(object):
     __metaclass__ = abc.ABCMeta
 
-    def find_win_spot(self, board, cell):
-        for a,b,c in (board.rows + board.cols + board.diagonals):
+    @classmethod
+    def find_win_spots(cls, board, cell):
+        '''Return a list of (x,y) tuples that, when marked, win for
+        the given cell.
+        '''
+        for cells in (board.rows + board.cols + board.diagonals):
             if cell == a == b or cell == b == c or cell == a == c:
                 pass
             
-    def find_block_spot(self, board, cell):
+    @classmethod
+    def find_block_spots(cls, board, cell):
+        '''Return a list of (x,y) tuples that, when marked, win for
+        cell's opponent.
+        '''
         opposite = Cell.CROSS if cell == Cell.NAUGHT else Cell.NAUGHT
         return find_win_spot(self, board, opposite)
 
