@@ -1,4 +1,4 @@
-'''Frog TicTac - A simple tic tac toe game for the OLPC project.
+'''tictactoeBoard - A simple tic-tac-toe representation.
 
 '''
 
