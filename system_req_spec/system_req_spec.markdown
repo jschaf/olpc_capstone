@@ -30,22 +30,16 @@ Definitions, acronyms, and abbreviations
 
 OLPC
    One Laptop Per Child
-
 XO
     The name of the OLPC laptop.
-
 XO 1.0
    Laptop version that was provided up to Fall 2009
-
 XO 1.5
    Updated version shipped out in Fall 2009
-
 XO 2.0
    Touch screen version planned for Fall 2010
-
 Sugar
    XO operating system based off Fedora OS
-
 Activities
    software applications for Sugar
 
