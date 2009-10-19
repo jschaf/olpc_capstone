@@ -30,18 +30,24 @@ Definitions, acronyms, and abbreviations
 
 OLPC
    One Laptop Per Child
+
 XO
     The name of the OLPC laptop.
+
 XO 1.0
    Laptop version that was provided up to Fall 2009
+
 XO 1.5
    Updated version shipped out in Fall 2009
+
 XO 2.0
    Touch screen version planned for Fall 2010
+
 Sugar
    XO operating system based off Fedora OS
+
 Activities
-   software applications for Sugar
+   Software applications for Sugar
 
 References 
 ----------
@@ -334,7 +340,8 @@ Reliability
 Availability
 ^^^^^^^^^^^^
 
-* All code is open 
+* All code is open source.
+* The OLPC project and all software it uses is open source.
 
 .. Requirements for availability of the system or the information it handles.
 
@@ -347,7 +354,7 @@ Security
 Maintainability
 ^^^^^^^^^^^^^^^
 
-* Code is documented using standard Python practices, including function doctypes and the use of Restructured Text.
+* Code is documented using standard Python practices, including function docstrings and the use of Restructured Text.
 * Code is written in standard Python style (PEP 8).
 
 Portability
