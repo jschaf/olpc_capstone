@@ -58,7 +58,7 @@ References
 * :pep:`257` - Docstring Conventions
 * `OLPC home page <http://laptop.org/en/>`_
 * `OLPC Wiki <http://wiki.laptop.org/>`_
-
+* `IEEE 830 (Software Requirements Specification) <http://standards.ieee.org/reading/ieee/std_public/description/se/830-1998_desc.html>`_
 .. This subsection should 
 
 .. a. Provide a complete list of all documents referenced elsewhere in
@@ -114,6 +114,8 @@ System interfaces
 The software is designed for use on the XO laptops in educational environments in developing nations.
 
 .. This should list each system interface and identify the functionality of the software to accomplish the system requirement and the interface description to match the system.
+
+.. _user_interfaces:
 
 User interfaces
 ^^^^^^^^^^^^^^^
@@ -184,7 +186,7 @@ N/A
 Operations
 ^^^^^^^^^^
 
-See User Interfaces.
+See :ref:`User Interfaces <user_interfaces>`
 
 .. This section should specify the normal and special operations required by the user such as 
 .. a.The various modes of operations in the user organization (e.g., user-initiated operations); 
@@ -326,15 +328,17 @@ Hardware interfaces
 Software interfaces
 ^^^^^^^^^^^^^^^^^^^
 
-* 
+* Python 2.5 is required.
+* The PyGame python library is required because is provides access to graphics drivers.
+* Other required libraries can be bundled with applications.
 
 .. Requirements for interaction with software interfaces.
 
 Communications interfaces
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-* Communications 
-
+* The XO can access a variety of different Wireless Access Points. [#wap]_
+* The mesh networking capability is exposed by a Python API. [#api_ref]_
 .. Requirements for interaction with communications interfaces.
 
 Functional Requirements
@@ -420,7 +424,7 @@ Design constraints
 
 * Target OLPC laptops in Africa are difficult to update, so the code must be robust.
 * Python is a relatively slow language.  Algorithms must be chosen carefully to avoid excessive slowdowns.
-* OLPC laptops are slower than Cadet laptops.  Applications must be designed to utilize limited hardware.
+* OLPC laptops use 433 Mhz CPU optimized for battery life rather than speed. [#olpc_spec]_  Applications must be designed to utilize limited hardware.
 
 Software system attributes
 --------------------------
@@ -497,4 +501,7 @@ Appendices
 Index
 *****
 
+.. [#wap] `Wireless Access Point Compatibility <http://wiki.laptop.org/go/Wireless_Access_Point_Compatibility>`_
+.. [#olpc_spec] `XO Hardware Specification <http://wiki.laptop.org/go/Hardware_specification>`_
+.. [#api_ref] `OLPC API Reference <http://wiki.laptop.org/go/API_Reference>`_
 .. List the major terms from this document and provide a hyperlink to a bookmark at that point (don't use page numbers on a website!)
