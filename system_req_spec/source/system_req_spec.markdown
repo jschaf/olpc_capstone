@@ -1,9 +1,3 @@
-.. sectnum::
-
-
-.. toctree::
-   :maxdepth: 1
-
 **System Requirements Specification (SRS)**
 
 *By Joe Schafer and Monte Hoover*
@@ -59,6 +53,7 @@ References
 * `OLPC home page <http://laptop.org/en/>`_
 * `OLPC Wiki <http://wiki.laptop.org/>`_
 * `IEEE 830 (Software Requirements Specification) <http://standards.ieee.org/reading/ieee/std_public/description/se/830-1998_desc.html>`_
+
 .. This subsection should 
 
 .. a. Provide a complete list of all documents referenced elsewhere in
@@ -186,7 +181,8 @@ N/A
 Operations
 ^^^^^^^^^^
 
-See :ref:`User Interfaces <user_interfaces>`
+.. See :ref:`User Interfaces <user_interfaces>`.
+See User Interfaces.
 
 .. This section should specify the normal and special operations required by the user such as 
 .. a.The various modes of operations in the user organization (e.g., user-initiated operations); 
@@ -287,7 +283,7 @@ Assumptions and dependencies
 Apportioning of requirements
 ----------------------------
 
-:ref:`Section 2.2 (product function) <product-function-lablel>` lays out the priority of the requirements for this project.  The last requirement to be completed is the Wiki Help Framework, and this can be delayed for future visitations of this project.  Other future work includes additional educational software applications and a framework for updates in areas that do not have access to the Internet.
+Section 2.2 (product function) lays out the priority of the requirements for this project.  The last requirement to be completed is the Wiki Help Framework, and this can be delayed for future visitations of this project.  Other future work includes additional educational software applications and a framework for updates in areas that do not have access to the Internet.
 
 .. This section should identify requirements that may be delayed until future versions of the system.  A necessary part of the process is to identify all of the requirement, estimate the effort required, and prioritize the requirements.  This section will identify known requirements that will not be incorporated into the system describe by this SRS.
 
@@ -339,6 +335,7 @@ Communications interfaces
 
 * The XO can access a variety of different Wireless Access Points. [#wap]_
 * The mesh networking capability is exposed by a Python API. [#api_ref]_
+
 .. Requirements for interaction with communications interfaces.
 
 Functional Requirements
